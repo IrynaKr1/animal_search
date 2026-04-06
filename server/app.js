@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { errorHandlers } = require('./middleware');
 const router = require('./routes');
+const { STATIC_PATH } = require('./constants');
 
 const app = express();
 
@@ -10,6 +11,8 @@ app.use(
     origin: '*',
   })
 );
+
+app.use(express.static('public'));
 
 app.use(express.json());
 
