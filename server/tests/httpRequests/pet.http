@@ -1,0 +1,22 @@
+### 200
+GET http://127.0.0.1:5000/api/petTypes
+
+
+###
+POST http://127.0.0.1:5000/api/pets
+Content-Type: application/json
+
+{
+    "name": "Tu",
+    "owner": "Ivan Maklowski",
+    "ownerContacts": "+380123456789",
+    "descritpion": "black, small dog",
+    "city": "Kyiv",
+    "lostDate": "2026-01-03",
+    "petTypeId": 2
+}
+ 
+### 
+GET http://127.0.0.1:5000/api/pets
+
+
