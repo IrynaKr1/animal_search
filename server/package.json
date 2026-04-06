@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "nodemon ."
+    "dev": "nodemon -r dotenv/config ."
   },
   "keywords": [],
   "author": "",
