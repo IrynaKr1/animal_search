@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       owner: {
         type: DataTypes.STRING(64),
         allowNull: false,
+        validate: {
+          is: /^[A-ZÀ-Ž][a-zA-Zà-ž]+ [A-ZÀ-Ž][a-zA-Zà-ž]+$/,
+        },
       },
       ownerContacts: {
         type: DataTypes.STRING(13),
