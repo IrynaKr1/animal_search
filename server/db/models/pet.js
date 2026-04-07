@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
           isBefore: new Date().toISOString(),
         },
       },
+      petImage: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

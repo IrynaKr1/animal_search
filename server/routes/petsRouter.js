@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { petsController } = require('../controllers');
-const { validation } = require('./../middleware');
+const { validation, upload } = require('./../middleware');
 
 const petsRouter = Router();
 
@@ -14,5 +14,11 @@ petsRouter
   .get(petsController.getPetById)
   .patch(petsController.updatePetById)
   .delete(petsController.deletePetById);
+
+petsRouter.patch(
+  '/:id/images',
+  upload.uploadPetImage,
+  petsController.updatePetImage
+);
 
 module.exports = petsRouter;
