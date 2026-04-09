@@ -49,13 +49,13 @@ function HomePage () {
         </Link>
 
         <Link to='/pets' className={styles.card}>
-          <div className={`${styles.card_icon} ${styles.card_icon_teal}`}>
+          <div className={`${styles.card_icon} ${styles.card_icon_search}`}>
             <PiMagnifyingGlassDuotone />
           </div>
           <h2 className={styles.card_title}>Pets List</h2>
           <p className={styles.card_desc}>
-            Jeżeli chcesz znaleźć dane właściciela zagubionego zwierzaka —
-            przejrzyj listę zgłoszeń.
+            If you want to find the owner of a lost pet, please browse the list
+            of reports.
           </p>
         </Link>
       </section>

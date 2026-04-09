@@ -15,6 +15,8 @@ $font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
 }
 
+// Style about us section
+
 .about_us {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -74,4 +76,66 @@ $font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+// Style card section
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ede8e0;
+  border-radius: 14px;
+  padding: 2rem 1.75rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.card_icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: rgba($primary, 0.12);
+  color: $primary;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card_icon_search {
+  background-color: rgba($teal, 0.12);
+  color: $teal;
+}
+.card_title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0;
+}
+
+.card_desc {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $text-muted;
+  margin: 0;
 }
