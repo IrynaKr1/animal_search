@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import './App.css'
-import PetsListPage from './pages/PetsListPage'
-import CreatePetPage from './pages/CreatePetPage'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import './App.css';
+import PetsListPage from './pages/PetsListPage';
+import CreatePetPage from './pages/CreatePetPage';
+import HomePage from './pages/HomePage';
 
 function App () {
   return (
@@ -12,7 +13,7 @@ function App () {
         <main>
           <Switch>
             <Route path='/' exact>
-              Home
+              <HomePage />
             </Route>
             <Route path='/pets/create'>
               <CreatePetPage />
@@ -24,7 +25,7 @@ function App () {
         </main>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
