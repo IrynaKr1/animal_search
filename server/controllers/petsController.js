@@ -3,9 +3,12 @@ const _ = require('lodash');
 const { Pet } = require('./../db/models');
 
 module.exports.createPet = async (req, res, next) => {
-  const { body } = req;
+  const { body, file } = req;
 
   try {
+    if (file) {
+      body.petImage = file.filename;
+    }
     const createdPet = await Pet.create(body);
 
     res.status(201).send({ data: createdPet });

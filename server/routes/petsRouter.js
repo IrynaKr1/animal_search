@@ -6,7 +6,11 @@ const petsRouter = Router();
 
 petsRouter
   .route('/')
-  .post(validation.validatePetOnCreate, petsController.createPet)
+  .post(
+    upload.uploadPetImage,
+    validation.validatePetOnCreate,
+    petsController.createPet
+  )
   .get(petsController.getPets);
 
 petsRouter
