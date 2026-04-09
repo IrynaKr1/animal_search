@@ -7,13 +7,14 @@ function HomePage () {
   return (
     <main className={styles.home}>
       {/* About us section */}
+
       <section className={styles.about_us}>
-        <div>
-          <h1>
-            Your local search service for
-            <span> lost animals</span>
+        <div className={styles.about_us_text}>
+          <h1 className={styles.title}>
+            Your search service for
+            <span className={styles.text_accent}> lost animals</span>
           </h1>
-          <p>
+          <p className={styles.description}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -21,38 +22,38 @@ function HomePage () {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur.
           </p>
-          <p>
+          <p className={styles.description}>
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum. Sed ut perspiciatis
             unde omnis iste natus error sit voluptatem accusantium doloremque
             laudantium, totam rem aperiam eaque ipsa.
           </p>
         </div>
-        <div>
+        <div className={styles.image_wrapper}>
           <img src={petsImage} alt='A dog and a cat' className={styles.image} />
         </div>
       </section>
 
       {/* Cards section */}
 
-      <section>
-        <Link to='/pets/create'>
-          <div>
+      <section className={styles.cards}>
+        <Link to='/pets/create' className={styles.card}>
+          <div className={styles.card_icon}>
             <PiPawPrintDuotone />
           </div>
-          <h2>Find My Pet</h2>
-          <p>
+          <h2 className={styles.card_title}>Find My Pet</h2>
+          <p className={styles.card_desc}>
             If you would like to submit a missing pet report, please click here
             to complete the form.
           </p>
         </Link>
 
-        <Link to='/pets'>
-          <div>
+        <Link to='/pets' className={styles.card}>
+          <div className={`${styles.card_icon} ${styles.card_icon_teal}`}>
             <PiMagnifyingGlassDuotone />
           </div>
-          <h2>Pets List</h2>
-          <p>
+          <h2 className={styles.card_title}>Pets List</h2>
+          <p className={styles.card_desc}>
             Jeżeli chcesz znaleźć dane właściciela zagubionego zwierzaka —
             przejrzyj listę zgłoszeń.
           </p>

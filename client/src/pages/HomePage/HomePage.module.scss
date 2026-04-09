@@ -1,0 +1,77 @@
+@use 'sass:color';
+
+$primary: #f07b2f;
+$teal: #5bbfb5;
+$background: #faf6f0;
+$text-dark: #1a1a1a;
+$text-muted: #555555;
+$font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+.home {
+  background-color: $background;
+  min-height: 100vh;
+  padding: 3rem 2rem 4rem;
+  font-family: $font;
+  box-sizing: border-box;
+}
+
+.about_us {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about_us_text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: $text-dark;
+  margin: 0 0 0.5rem;
+
+  @media (max-width: 640px) {
+    font-size: 2rem;
+  }
+}
+
+.text_accent {
+  color: $primary;
+}
+
+.description {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: $text-muted;
+  margin: 0;
+}
+
+.image_wrapper {
+  background-color: #f5ede0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 640px) {
+    order: -1;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
