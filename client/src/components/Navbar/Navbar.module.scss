@@ -1,0 +1,72 @@
+$primary: #f07b2f;
+$background: #fdf6ee;
+$text-default: #444444;
+$text-active: #ffffff;
+$font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+@use 'sass:color';
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $background;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-family: $font;
+}
+
+.navbar_logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $primary;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.navbar_logo_icon {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar_logo_text {
+  letter-spacing: 0.05em;
+}
+
+.navbar_links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar_link {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: $text-default;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: rgba($primary, 0.1);
+    color: $primary;
+  }
+}
+
+.navbar_link_active {
+  background-color: $primary;
+  color: $text-active;
+
+  &:hover {
+    background-color: color.adjust($primary, $lightness: -25%);
+    color: $text-active;
+  }
+}

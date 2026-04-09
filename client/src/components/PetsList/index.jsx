@@ -45,6 +45,7 @@ function PetsList ({
       <ul>
         {pets.map(p => (
           <li key={p.id}>
+            <p>{p.createdAt}</p>
             <p>
               {p.name}, {p.descritpion}
             </p>
@@ -53,6 +54,7 @@ function PetsList ({
             </p>
             <p>{p.lostDate}</p>
             <p>{petTypes.find(t => t.id === p.petTypeId)?.type}</p>
+            <p>{p.petImage}</p>
           </li>
         ))}
       </ul>
