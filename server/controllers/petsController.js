@@ -27,7 +27,7 @@ module.exports.getPets = async (req, res, next) => {
     const findAllPets = await Pet.findAll({
       raw: true,
       attributes: {
-        exclude: ['createdAt', 'updatedAt'],
+        exclude: ['updatedAt'],
       },
       where,
     });
