@@ -63,105 +63,111 @@ function PetsList ({
         </Link>
       </div>
 
-      {/* Sidebar filters */}
-      <aside>
-        <div>
-          <span className={styles.sidebar_header}>▽</span>
-          <span>Filters</span>
-        </div>
-
-        <div className={styles.filter_group}>
-          <label>Pet Type</label>
-          <select
-            value={petType ?? ''}
-            onChange={e => changePetType(e.target.value || null)}
-          >
-            <option value=''>All</option>
-            {petTypes.map(t => (
-              <option key={t.id} value={t.id}>
-                {t.type}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className={styles.filter_group}>
-          <label>City</label>
-          <select
-            value={filter.city ?? ''}
-            onChange={e => changeCity(e.target.value || null)}
-          >
-            <option value=''>All</option>
-            {CONSTANTS.CITIES.map(city => (
-              <option key={city} value={city}>
-                {city}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className={styles.filter_group}>
-          <label>Added from</label>
-          <div>
-            <span>📅</span>
-            <input
-              type='date'
-              value={filter.dateFrom ?? ''}
-              onChange={e => changeDateFrom(e.target.value || null)}
-            />
+      <div className={styles.layout}>
+        {/* Sidebar filters */}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebar_header}>
+            <span className={styles.filter_icon}>▽</span>
+            <span>Filters</span>
           </div>
-        </div>
 
-        <p>
-          Found: {pets.length} of {pets.length}
-        </p>
-      </aside>
+          <div className={styles.filter_group}>
+            <label className={styles.filter_label}>Pet Type</label>
+            <select
+              className={styles.filter_select}
+              value={petType ?? ''}
+              onChange={e => changePetType(e.target.value || null)}
+            >
+              <option value=''>All</option>
+              {petTypes.map(t => (
+                <option key={t.id} value={t.id}>
+                  {t.type}
+                </option>
+              ))}
+            </select>
+          </div>
 
-      {/* Pets list*/}
-      <main>
-        {pets.map(pet => (
-          <div key={pet.id} className={styles.card}>
-            <div className={styles.card_image_wrapper}>
-              {pet.petImage ? (
-                <img
-                  src={`${IMAGE_BASE_URL}${pet.petImage}`}
-                  alt={pet.name}
-                  className={styles.card_image}
-                />
-              ) : (
-                <div>🐾</div>
-              )}
+          <div className={styles.filter_group}>
+            <label className={styles.filter_label}>City</label>
+            <select
+              className={styles.filter_select}
+              value={filter.city ?? ''}
+              onChange={e => changeCity(e.target.value || null)}
+            >
+              <option value=''>All</option>
+              {CONSTANTS.CITIES.map(city => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.filter_group}>
+            <label className={styles.filter_label}>Added from</label>
+            <div className={styles.date_input_wrapper}>
+              <span className={styles.date_icon}>📅</span>
+              <input
+                type='date'
+                className={styles.filter_date}
+                value={filter.dateFrom ?? ''}
+                onChange={e => changeDateFrom(e.target.value || null)}
+              />
             </div>
+          </div>
 
-            <div className={styles.card_body}>
-              <h2 className={styles.card_name}>{pet.name}</h2>
-              <p>
-                {petTypes.find(t => t.id === pet.petTypeId)?.type} · {pet.city}
-              </p>
-              <p>Created: {formatDate(pet.createdAt)}</p>
+          <p className={styles.results_count}>
+            Found: {pets.length} of {pets.length}
+          </p>
+        </aside>
 
-              <div className={styles.card_footer}>
-                <label className={styles.found_toggle}>
-                  <input
-                    type='checkbox'
-                    checked={pet.isFound}
-                    onChange={() => handleFoundToggle(pet)}
+        {/* Pets list*/}
+        <main>
+          {pets.map(pet => (
+            <div key={pet.id} className={styles.card}>
+              <div className={styles.card_image_wrapper}>
+                {pet.petImage ? (
+                  <img
+                    src={`${IMAGE_BASE_URL}${pet.petImage}`}
+                    alt={pet.name}
+                    className={styles.card_image}
                   />
-                  <span>Is Found</span>
-                </label>
+                ) : (
+                  <div>🐾</div>
+                )}
+              </div>
 
-                <button
-                  className={styles.delete_button}
-                  onClick={() => handleDelete(pet.id)}
-                  aria-label='Delete form'
-                >
-                  <PiTrashDuotone />
-                </button>
+              <div className={styles.card_body}>
+                <h2 className={styles.card_name}>{pet.name}</h2>
+                <p>
+                  {petTypes.find(t => t.id === pet.petTypeId)?.type} ·{' '}
+                  {pet.city}
+                </p>
+                <p>Created: {formatDate(pet.createdAt)}</p>
+
+                <div className={styles.card_footer}>
+                  <label className={styles.found_toggle}>
+                    <input
+                      type='checkbox'
+                      checked={pet.isFound}
+                      onChange={() => handleFoundToggle(pet)}
+                    />
+                    <span>Is Found</span>
+                  </label>
+
+                  <button
+                    className={styles.delete_button}
+                    onClick={() => handleDelete(pet.id)}
+                    aria-label='Delete form'
+                  >
+                    <PiTrashDuotone />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </main>
+          ))}
+        </main>
+      </div>
     </div>
   );
 }
