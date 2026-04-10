@@ -52,7 +52,21 @@ module.exports.getPets = async (req, res, next) => {
   }
 };
 
-module.exports.getPetById = async (req, res, next) => {};
+module.exports.getPetById = async (req, res, next) => {
+  const { params: { id } } = req;
+
+  try {
+    const pet = await Pet.findByPk(id, { raw: true });
+
+    if (!pet) {
+      return next(createHttpError(404, 'Pet not found'));
+    }
+
+    res.status(200).send({ data: pet });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports.updatePetById = async (req, res, next) => {
   const {
