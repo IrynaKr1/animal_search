@@ -122,7 +122,13 @@ function PetsList ({
         </aside>
 
         {/* Pets list*/}
-        <main>
+        <main className={styles.grid}>
+          {isFetching && <p className={styles.loading}>Loading...</p>}
+
+          {!isFetching && pets.length === 0 && (
+            <p className={styles.empty}>No missing Pets!</p>
+          )}
+
           {pets.map(pet => (
             <div key={pet.id} className={styles.card}>
               <div className={styles.card_image_wrapper}>
@@ -133,17 +139,23 @@ function PetsList ({
                     className={styles.card_image}
                   />
                 ) : (
-                  <div>🐾</div>
+                  <img
+                    src='./default_img.jpg'
+                    alt='No photo'
+                    className={styles.card_image}
+                  />
                 )}
               </div>
 
               <div className={styles.card_body}>
                 <h2 className={styles.card_name}>{pet.name}</h2>
-                <p>
+                <p className={styles.card_meta}>
                   {petTypes.find(t => t.id === pet.petTypeId)?.type} ·{' '}
                   {pet.city}
                 </p>
-                <p>Created: {formatDate(pet.createdAt)}</p>
+                <p className={styles.card_date}>
+                  Created: {formatDate(pet.createdAt)}
+                </p>
 
                 <div className={styles.card_footer}>
                   <label className={styles.found_toggle}>
@@ -152,7 +164,7 @@ function PetsList ({
                       checked={pet.isFound}
                       onChange={() => handleFoundToggle(pet)}
                     />
-                    <span>Is Found</span>
+                    <span className={styles.found_label}>Is Found</span>
                   </label>
 
                   <button
