@@ -1,5 +1,6 @@
 const createHttpError = require('http-errors');
 const _ = require('lodash');
+const { Op } = require('sequelize');
 const { Pet } = require('./../db/models');
 
 module.exports.createPet = async (req, res, next) => {
@@ -24,6 +25,16 @@ module.exports.getPets = async (req, res, next) => {
 
   if (query.petType) {
     where.petTypeId = query.petType;
+  }
+
+  if (query.city) {
+    where.city = query.city;
+  }
+
+  if (query.dateFrom) {
+    where.createdAt = {
+      [Op.gte]: new Date(query.dateFrom),
+    };
   }
 
   try {
