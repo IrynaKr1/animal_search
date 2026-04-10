@@ -55,6 +55,32 @@ export const getPetsThunk = createAsyncThunk(
   }
 );
 
+export const deletePetThunk = createAsyncThunk(
+  `${PET_SLICE_NAME}/delete`,
+  async (payload, { rejectWithValue }) => {
+    try {
+      await API.deletePet(payload);
+      return payload;
+    } catch (error) {
+      return rejectWithValue({ errors: error.response.data });
+    }
+  }
+);
+
+export const updatePetThunk = createAsyncThunk(
+  `${PET_SLICE_NAME}/update`,
+  async ({ id, values }, { rejectWithValue }) => {
+    try {
+      const {
+        data: { data },
+      } = await API.updatePet(id, values);
+      return data;
+    } catch (error) {
+      return rejectWithValue({ errors: error.response.data });
+    }
+  }
+);
+
 const petsSlice = createSlice({
   name: PET_SLICE_NAME,
   initialState,
@@ -63,6 +89,7 @@ const petsSlice = createSlice({
       state.filter.petType = payload;
     },
   },
+  // Get Pet Types
   extraReducers: builder => {
     builder.addCase(getTypesThunk.fulfilled, (state, { payload }) => {
       state.petTypes = [...payload];
@@ -72,6 +99,7 @@ const petsSlice = createSlice({
       state.error = payload;
     });
 
+    // Create Pet
     builder.addCase(createPetThunk.pending, state => {
       state.isFetching = true;
       state.error = null;
@@ -86,6 +114,7 @@ const petsSlice = createSlice({
       state.isFetching = false;
     });
 
+    // Get Pet
     builder.addCase(getPetsThunk.pending, state => {
       state.isFetching = true;
       state.error = null;
@@ -96,6 +125,33 @@ const petsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getPetsThunk.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.isFetching = false;
+    });
+
+    // Update Pet
+    builder.addCase(updatePetThunk.pending, state => {
+      state.isFetching = true;
+      state.error = null;
+    });
+    builder.addCase(updatePetThunk.fulfilled, (state, { payload }) => {
+      const index = state.pets.findIndex(p => p.id === payload.id);
+      if (index !== -1) state.pets[index] = payload;
+      state.error = null;
+      state.isFetching = false;
+    });
+    builder.addCase(updatePetThunk.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.isFetching = false;
+    });
+
+    // Delete Pet
+    builder.addCase(deletePetThunk.fulfilled, (state, { payload }) => {
+      state.pets = state.pets.filter(p => p.id !== payload);
+      state.error = null;
+      state.isFetching = false;
+    });
+    builder.addCase(deletePetThunk.rejected, (state, { payload }) => {
       state.error = payload;
       state.isFetching = false;
     });
