@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { PiTrashDuotone } from 'react-icons/pi';
 import {
   changePetTypeFilter,
+  changeCityFilter,
+  changeDateFromFilter,
   deletePetThunk,
   getPetsThunk,
   getTypesThunk,
@@ -25,6 +27,8 @@ function PetsList ({
   changePetType,
   deletePetById,
   updatePetById,
+  changeCity,
+  changeDateFrom,
 }) {
   const { petType } = filter;
 
@@ -34,7 +38,7 @@ function PetsList ({
 
   useEffect(() => {
     getPets(filter);
-  }, [petType]);
+  }, [filter.petType, filter.city, filter.dateFrom]);
 
   const handleFoundToggle = pet => {
     updatePetById({ id: pet.id, values: { isFound: !pet.isFound } });
@@ -83,7 +87,10 @@ function PetsList ({
 
         <div className={styles.filter_group}>
           <label>City</label>
-          <select defaultValue=''>
+          <select
+            value={filter.city ?? ''}
+            onChange={e => changeCity(e.target.value || null)}
+          >
             <option value=''>All</option>
             {CONSTANTS.CITIES.map(city => (
               <option key={city} value={city}>
@@ -97,7 +104,11 @@ function PetsList ({
           <label>Added from</label>
           <div>
             <span>📅</span>
-            <input type='date' placeholder='Choose a date' />
+            <input
+              type='date'
+              value={filter.dateFrom ?? ''}
+              onChange={e => changeDateFrom(e.target.value || null)}
+            />
           </div>
         </div>
 
@@ -161,5 +172,7 @@ const mapDispatchToProps = dispatch => ({
   changePetType: data => dispatch(changePetTypeFilter(data)),
   deletePetById: id => dispatch(deletePetThunk(id)),
   updatePetById: data => dispatch(updatePetThunk(data)),
+  changeCity: data => dispatch(changeCityFilter(data)),
+  changeDateFrom: data => dispatch(changeDateFromFilter(data)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PetsList);

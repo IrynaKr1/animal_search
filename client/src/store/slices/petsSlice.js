@@ -10,6 +10,8 @@ const initialState = {
   error: null,
   filter: {
     petType: null,
+    city: null,
+    dateFrom: null,
   },
 };
 
@@ -89,6 +91,12 @@ const petsSlice = createSlice({
     changePetTypeFilter: (state, { payload }) => {
       state.filter.petType = payload;
     },
+    changeCityFilter: (state, { payload }) => {
+      state.filter.city = payload;
+    },
+    changeDateFromFilter: (state, { payload }) => {
+      state.filter.dateFrom = payload;
+    },
   },
   // Get Pet Types
   extraReducers: builder => {
@@ -161,6 +169,7 @@ const petsSlice = createSlice({
 
 const { reducer, actions } = petsSlice;
 
-export const { changePetTypeFilter } = actions;
+export const { changePetTypeFilter, changeCityFilter, changeDateFromFilter } =
+  actions;
 
 export default reducer;
