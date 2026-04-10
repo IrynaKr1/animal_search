@@ -43,7 +43,28 @@ module.exports.getPets = async (req, res, next) => {
 
 module.exports.getPetById = async (req, res, next) => {};
 
-module.exports.updatePetById = async (req, res, next) => {};
+module.exports.updatePetById = async (req, res, next) => {
+  const {
+    params: { id },
+    body,
+  } = req;
+
+  try {
+    const [updatedPetCount, [updatedPet]] = await Pet.update(body, {
+      where: { id },
+      raw: true,
+      returning: true,
+    });
+
+    if (!updatedPetCount) {
+      return next(createHttpError(404, 'Pet not found'));
+    }
+
+    res.status(200).send({ data: updatedPet });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports.deletePetById = async (req, res, next) => {
   const {

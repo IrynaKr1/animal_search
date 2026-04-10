@@ -7,8 +7,8 @@ POST http://127.0.0.1:5000/api/pets
 Content-Type: application/json
 
 {
-    "name": "Tu",
-    "owner": "Ivan Maklowski",
+    "name": "Tuzik",
+    "owner": "Ivan Banki",
     "ownerContacts": "+380123456789",
     "descritpion": "black, small dog",
     "city": "Kyiv",
@@ -20,3 +20,17 @@ Content-Type: application/json
 GET http://127.0.0.1:5000/api/pets
 
 
+### 404
+DELETE http://localhost:5000/api/pets/123
+
+### 
+DELETE http://localhost:5000/api/pets/2
+
+###
+
+PATCH  http://127.0.0.1:5000/api/pets/2
+Content-Type: application/json
+
+{
+    "name": "Test"
+}
