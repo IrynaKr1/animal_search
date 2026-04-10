@@ -45,7 +45,22 @@ module.exports.getPetById = async (req, res, next) => {};
 
 module.exports.updatePetById = async (req, res, next) => {};
 
-module.exports.deletePetById = async (req, res, next) => {};
+module.exports.deletePetById = async (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+
+  try {
+    const deletedPetCount = await Pet.destroy({ where: { id } });
+    if (!deletedPetCount) {
+      return next(createHttpError(404, 'Pet not found'));
+    }
+  } catch (error) {
+    next(error);
+  }
+
+  res.status(200).send({ data: id });
+};
 
 module.exports.updatePetImage = async (req, res, next) => {
   const {
