@@ -59,7 +59,8 @@ export const deletePetThunk = createAsyncThunk(
   `${PET_SLICE_NAME}/delete`,
   async (payload, { rejectWithValue }) => {
     try {
-      await API.deletePet(payload);
+      const response = await API.deletePetById(payload);
+      console.log('delete response', response);
       return payload;
     } catch (error) {
       return rejectWithValue({ errors: error.response.data });
@@ -73,7 +74,7 @@ export const updatePetThunk = createAsyncThunk(
     try {
       const {
         data: { data },
-      } = await API.updatePet(id, values);
+      } = await API.updatePetById(id, values);
       return data;
     } catch (error) {
       return rejectWithValue({ errors: error.response.data });
