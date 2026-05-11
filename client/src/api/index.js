@@ -10,3 +10,4 @@ export const getPets = filter =>
 export const deletePetById = id => httpClient.delete(`/pets/${id}`);
 export const updatePetById = (id, values) =>
   httpClient.patch(`/pets/${id}`, values);
+export const getPetById = id => httpClient.get(`/pets/${id}`);

@@ -4,6 +4,7 @@ import './App.css';
 import PetsListPage from './pages/PetsListPage';
 import CreatePetPage from './pages/CreatePetPage';
 import HomePage from './pages/HomePage';
+import PetPage from './pages/PetPage';
 
 function App () {
   return (
@@ -17,6 +18,9 @@ function App () {
             </Route>
             <Route path='/pets/create'>
               <CreatePetPage />
+            </Route>
+            <Route path='/pets/:id'>
+              <PetPage />
             </Route>
             <Route path='/pets'>
               <PetsListPage />

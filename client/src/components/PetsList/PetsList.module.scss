@@ -170,6 +170,8 @@ $font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .card {
+  text-decoration: none;
+  color: inherit;
   background-color: #ffffff;
   border: 1px solid $border;
   border-radius: 12px;
@@ -256,7 +258,7 @@ $font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0.25rem;
   border-radius: 6px;
   transition: background-color 0.15s ease, color 0.15s ease;
- 
+
   &:hover {
     background-color: rgba($primary, 0.1);
     color: color.adjust($primary, $lightness: -15%);

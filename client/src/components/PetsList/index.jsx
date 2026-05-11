@@ -130,7 +130,7 @@ function PetsList ({
           )}
 
           {pets.map(pet => (
-            <div key={pet.id} className={styles.card}>
+            <Link key={pet.id} to={`/pets/${pet.id}`} className={styles.card}>
               <div className={styles.card_image_wrapper}>
                 {pet.petImage ? (
                   <img
@@ -140,7 +140,7 @@ function PetsList ({
                   />
                 ) : (
                   <img
-                    src='./default_img.jpg'
+                    src='/default_img.jpg'
                     alt='No photo'
                     className={styles.card_image}
                   />
@@ -162,6 +162,7 @@ function PetsList ({
                     <input
                       type='checkbox'
                       checked={pet.isFound}
+                      onClick={e => e.stopPropagation()}
                       onChange={() => handleFoundToggle(pet)}
                     />
                     <span className={styles.found_label}>Is Found</span>
@@ -169,14 +170,17 @@ function PetsList ({
 
                   <button
                     className={styles.delete_button}
-                    onClick={() => handleDelete(pet.id)}
+                    onClick={e => {
+                      e.preventDefault();
+                      handleDelete(pet.id);
+                    }}
                     aria-label='Delete form'
                   >
                     <PiTrashDuotone />
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </main>
       </div>

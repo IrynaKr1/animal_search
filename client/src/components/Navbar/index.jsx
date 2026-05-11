@@ -6,12 +6,12 @@ import styles from './Navbar.module.scss';
 function Navbar () {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbar_logo}>
+      <NavLink to='/' className={styles.navbar_logo}>
         <span className={styles.navbar_logo_icon}>
           <PiPawPrintDuotone />
         </span>
         <span className={styles.navbar_logo_text}>Animal Search</span>
-      </div>
+      </NavLink>
 
       <ul className={styles.navbar_links}>
         <li>
