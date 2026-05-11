@@ -1,4 +1,5 @@
 'use strict';
+const CONSTANTS = require('../../constants');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -36,7 +37,7 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       city: {
-        type: Sequelize.ENUM('Kyiv', 'Dnipro', 'New York'),
+        type: Sequelize.ENUM(...CONSTANTS.CITIES),
         allowNull: false,
       },
       is_found: {

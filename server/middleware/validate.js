@@ -1,4 +1,5 @@
 const yup = require('yup');
+const CONSTANTS = require('./../constants');
 
 const PET_VALIDATION_SCHEMA = yup.object({
   name: yup.string().trim().min(1).max(32).required(),
@@ -9,7 +10,7 @@ const PET_VALIDATION_SCHEMA = yup.object({
     .matches(/^\+\d{12}$/, 'Phone number must contain 12 symbols, and + ')
     .required(),
   descritpion: yup.string().trim().min(15).max(255).required(),
-  city: yup.string().oneOf(['Kyiv', 'Dnipro', 'New York']).required(),
+  city: yup.string().oneOf(CONSTANTS.CITIES).required(),
   lostDate: yup.date().max(new Date()).required(),
   petTypeId: yup.number().min(1).required(),
 });

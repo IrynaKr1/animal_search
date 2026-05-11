@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const CONSTANTS = require('../../constants');
+
 module.exports = (sequelize, DataTypes) => {
   class Pet extends Model {
     static associate (models) {
@@ -35,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       descritpion: { type: DataTypes.STRING, allowNull: false },
       city: {
-        type: DataTypes.ENUM('Kyiv', 'Dnipro', 'New York'),
+        type: DataTypes.ENUM(...CONSTANTS.CITIES),
         allowNull: false,
       },
       isFound: { type: DataTypes.BOOLEAN, defaultValue: false },
