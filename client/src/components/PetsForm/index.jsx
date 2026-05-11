@@ -20,7 +20,6 @@ function PetsForm ({ petTypes, getTypes, createPet }) {
   };
 
   const handleSubmit = (values, formikBag) => {
-    console.log('values', values);
     const formData = new FormData();
     Object.entries(values).forEach(([key, val]) => {
       if (val !== null && val !== '') formData.append(key, val);

@@ -45,7 +45,6 @@ function PetsList ({
   };
 
   const handleDelete = id => {
-    console.log('handleDelete', id);
     deletePetById(id);
   };
 
