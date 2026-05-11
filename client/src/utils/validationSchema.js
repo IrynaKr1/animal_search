@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
     .max(new Date(), 'Date cannot be in the future')
     .required('Required'),
 
-  description: Yup.string(),
+  descritpion: Yup.string().required('Required'),
 
   photo: Yup.mixed(),
 });

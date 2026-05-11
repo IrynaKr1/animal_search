@@ -219,13 +219,25 @@ function PetsForm ({ petTypes, getTypes, createPet }) {
 
             {/* Description field*/}
             <div className={styles.field}>
-              <label className={styles.label}>Description:</label>
+              <label className={styles.label}>Description *</label>
               <Field
                 as='textarea'
                 name='descritpion'
+                className={classNames(styles.input, styles.select, {
+                  [styles.valid]:
+                    !formikProps.errors.descritpion &&
+                    formikProps.touched.descritpion,
+                  [styles.invalid]:
+                    formikProps.errors.descritpion &&
+                    formikProps.touched.descritpion,
+                })}
                 placeholder='Describe appearance, special features...'
                 rows={4}
-                className={styles.input}
+              />
+              <ErrorMessage
+                name='descritpion'
+                component='span'
+                className={styles.error}
               />
             </div>
 
